@@ -1,0 +1,9 @@
+sudo gedit reducer_corrected.py
+sudo gedit mapper_corrected.py
+
+
+cat input | python3 mapper_corrected.py
+
+cat input | python3 mapper_corrected.py |sort |python3 reducer_corrected.py
+
+

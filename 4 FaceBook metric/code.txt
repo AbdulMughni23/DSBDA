@@ -1,0 +1,49 @@
+#imports
+
+import pandas as pd
+import numpy as np
+df = pd.read_csv(r"link",sep=";")
+df
+
+df.shape
+
+#creating a Subset
+
+df1 = df[['Page total likes', 'category', 'Post Month', 'Post Weekday']].loc[0:15]
+df1
+
+df2 = df[['Page total likes', 'category', 'Post Month', 'Post Weekday']].loc[16:30]
+df2
+
+df3 = df[['Page total likes', 'category', 'Post Month', 'Post Weekday']].loc[31:50]
+df3
+
+#Merging data
+
+merging=pd.concat([df1,df2,df3])
+merging
+
+
+#Sort Data
+
+sort_values=df.sort_values('page total likes' , ascending=false)    ..............default ascending
+sort_values
+
+
+#transposing data                                   ............rows <=> columns
+
+df.transpose()
+
+
+
+#shape and Reshape Data
+
+shaping = df.shape                                 ..............shape of data
+shaping            
+
+pivot_table = pd.pivot_table(df, index = ['Type', 'Category'], values = 'comment')
+print(pivot_table)
+
+
+
+

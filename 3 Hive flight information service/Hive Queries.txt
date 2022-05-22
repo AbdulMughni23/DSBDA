@@ -1,0 +1,154 @@
+create database demo ;
+
+show databases ;
+
+use demo ;
+
+create table student(name string, rollno int,dept string)
+	row format delimited
+	fields terminated by ',';
+
+# loading a data in database
+
+load data local inpath 'filepath' into table student ;
+
+# dropping a table 
+
+use default 					................. for any table created outside the database(ie in wearhoudse directory)
+
+drop table student                        ................. for a table in a database use command (use DATABASE_NAME)
+
+#view items in the database
+
+select * from student
+
+
+#to add more data files in the table 
+
+load data local inpath 'new_filepath' into table student ;
+
+
+................... if the datatype of the inserted file does not match declared datatype then NULL is inserted
+
+# to know about datatypes declared use
+
+describe student
+
+
+#Altering a table
+
+ALTER TABLE name RENAME TO new_name
+ALTER TABLE name ADD COLUMNS (col_spec[, col_spec ...])
+ALTER TABLE name DROP [COLUMN] column_name
+ALTER TABLE name CHANGE column_name new_name new_type
+ALTER TABLE name REPLACE COLUMNS (col_spec[, col_spec ...])
+
+
+
+
+
+# loading data from hadoop into hive
+
+
+# make a directory on hadoop
+
+hdfs dfs -mkdir /HiveData
+
+
+
+# add required data in the directory using
+
+hdfs dfs -put /filepath /HiveData
+
+
+
+# to take data from hadoop into hive use command
+
+load data inpath '/HiveData/filename' into table student                       ................the files put into hive from hadoop gets removed from hadoop 
+
+
+
+#creating a external table command
+
+create external table student3(name string,rollno int,dept string)
+	row format delimited
+	fields terminated by ','
+	location '/HiveData' ;                                  ................... all data files in HiveData is put into the table
+										  .................... if we want to add any data into the student3 table we need to add data files into HiveData directory
+
+
+.............. when we drop an internal table, the table schema and its data both are lost
+.............. when we drop an external table, the table schema id lost but not the data
+
+
+
+#joins in hive
+
+
+#copy data files into local storage
+#then put the data files in hadoop 
+
+sudo hadoop fs -copyFromLocal /filepath/dataFile1
+hadoop fs -ls /                                       ..............to check if files are loaded
+
+sudo hadoop fs -copyFromLocal /filepath/dataFile2
+hadoop fs -ls /                                       ..............to check if files are loaded
+
+
+#create a new table01 in a database or default database
+#create second table02 
+
+#load data into tables accordingly
+
+#left join
+
+create table Tbl_left_join as select * from table01 t1 left join table02 t2 on t1.uniq_idc = t2.uniq_idi;        ...............uniq_idc , uniq_idi being the unique id columns
+
+# right join
+create table Tbl_right_join as select * from table01 t1 right join table02 t2 on t1.uniq_idc = t2.uniq_idi;        ...............uniq_idc , uniq_idi being the unique id columns
+
+#inner join
+create table Tbl_inner_join as select * from table01 t1 join table02 t2 on t1.uniq_idc = t2.uniq_idi;        ...............uniq_idc , uniq_idi being the unique id columns
+
+#full join
+create table Tbl_full_join as select * from table01 t1 full join table02 t2 on t1.uniq_idc = t2.uniq_idi;        ...............uniq_idc , uniq_idi being the unique id columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+

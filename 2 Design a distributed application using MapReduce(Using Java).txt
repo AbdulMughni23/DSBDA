@@ -1,0 +1,75 @@
+Steps for Compilation & Execution of Program:
+
+#sudo mkdir analyzelogs 
+    ls 
+ #sudo chmod -R 777 analyzelogs/ 
+   	 cd 
+     	ls 
+     	cd .. 
+	pwd 
+	ls 
+	cd 
+	pwd 
+#sudo chown -R hduser analyzelogs/ 
+	cd 
+	ls 
+#cd analyzelogs/ 
+	ls 
+    	cd .. 
+
+
+
+
+
+Copy the Files (Mapper.java,Reduce.java,Driver.java to Analyzelogs Folder):  
+
+#sudo cp /home/mde/Desktop/count_logged_users/* -/analyzelogs/ 
+ 
+Start HADOOP 
+#start-dfs.sh 
+#start-yarn.sh 
+#jps 
+	cd 
+	cd analyzelogs 
+	ls 
+	pwd 
+	ls 
+#ls -ltr 
+#ls -al 
+#sudo chmod +r *.* 
+   	pwd 
+#export CLASSPATH="$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-core-2.9.0.jar:$HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-client-common-2.9.0.jar:$HADOOP_HOME/share/hadoop/common/hadoop-common-2.9.0.jar:~/analyzelogs/SalesCountry/*:$HADOOP_HOME/lib/*" 
+
+
+
+
+Compile Java Files:
+
+# javac -d . SalesMapper.java SalesCountryReducer.java SalesCountryDriver.java 
+    ls 
+ #cd SalesCountry/ 
+    ls 
+   cd .. 
+  #sudo gedit Manifest.txt 
+  #jar -cfm analyzelogs.jar Manifest.txt SalesCountry/*.class 
+     ls 
+    cd 
+    jps 
+#cd analyzelogs/ 
+  
+
+
+
+Create Directory on Hadoop
+
+#sudo mkdir ~/input2000 
+     ls 
+    pwd 
+ #sudo cp access_log_short.csv ~/input2000/ 
+# $HADOOP_HOME/bin/hdfs dfs -put ~/input2000 / 
+ # $HADOOP_HOME/bin/hadoop jar analyzelogs.jar /input2000 /output2000 
+
+# $HADOOP_HOME/bin/hdfs dfs -cat /output2000/part-00000 
+  
+# stop-all.sh 
+  # jps 

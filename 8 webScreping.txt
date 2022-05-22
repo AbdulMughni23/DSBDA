@@ -1,0 +1,26 @@
+import requests
+import bs4
+
+request1 = requests.get('link of the webpage')
+request1             .........................................will get responses
+
+request1.content        .............................will get raw html
+
+soup = bs4.BeautifulSoup(request.text)
+soup                                   .....................will get all text of webpage
+
+#for multiple results
+
+reviews = soup.findAll('div', {'class': 'class_name'})  ...........div is html tag which stores the data
+for review in reviews:
+	print(review.get_text() + "\n\n")
+
+
+#for single result
+
+rating = soup.find('HTML_tag', {'class': 'class_name'}).get_text()
+print(rating)
+
+
+
+

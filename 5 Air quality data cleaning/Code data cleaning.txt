@@ -1,0 +1,176 @@
+import pandas as pd
+df = pd.read_csv(r"path")
+df
+
+print(df.shape)
+print(df.columns)
+
+df.info()
+
+df.isnull().sum()
+
+df.count()   ...............it refers to the non null vlaues in each column
+
+df['col_name'].value_counts()              .............no. uniqie of values 
+
+df.describe
+
+display(data2["PT08.S1(CO)"])   ...................display data of specific column
+
+data1 = df.drop(['column name1','column name2',.....], axis = 1)
+data1
+
+data2 = df.dropna(subset=['date'])   ............droping row where no date is avaliable
+data2
+# if we want to do operations in same data frame
+df.dropna(subset=['date'], inplace = True)   ............droping row where no date is avaliable in dataframe df
+
+
+#filling the na vlaues
+
+df.fillna(value, inplace = True)         ....................for all columns
+df["col_name"].fillna(value, inplace = True)        ............for specific column
+
+
+#replace with mean
+x = df["col_name"].mean()
+df["col_name"].fillna(x, inplace = True) 
+
+#replace with median
+x = df["col_name"].median()
+df["col_name"].fillna(x, inplace = True) 
+
+#replace with mode
+x = df["col_name"].mode()
+df["col_name"].fillna(x, inplace = True) 
+
+
+#correcting the format
+df['col_name'] = pd.to_datetime(df.['col_name'])
+
+
+
+#replacing a wrong value in a column
+df.loc[row_no, 'col_name'] = value
+
+#or
+
+for x in df.index:
+	if df.loc[x, 'col_name'] > max_value:
+		df.loc[x, 'col_name'] = max_value
+
+
+#for finding duplicate rows
+
+print(fd.duplicated())  .................returns true for duplicated values
+
+#removing the duplicated values
+
+df.drop_duplicates(inplace = true)
+print(df)
+
+
+#data transformation
+
+df[col_name].unique()       .................names all unique columns
+
+#remapping names of reresenting words in attributes
+
+types{
+	"current name" : "name to be set"	
+	.........
+	........	
+	......
+}
+
+df.col_name = df.col_name.replace(types)
+
+#or 
+
+df['col_name'].replace( {"current name" : "name to be set", ............ }, implace = True )
+
+
+
+
+
+
+# creating a new column of specific data in the avaliable data columns
+
+df['new_col_name'] = df.existing_col_name
+
+
+
+# in case of a date (creating a col year using date column)
+
+df['year'] = df.date.dt.year
+
+
+
+
+
+
+  
+# using simpleImputer to fill missing values
+
+import numpy as np
+from sklearn.impute import SimpleImputer
+
+cols = ['col1', 'col2', 'col3'......]                           ..............create an array of columns
+
+imputer = SimpleImputer(missing_values=np.nan, stratergy='mean')		.................create imputer value
+df[cols] = imputer.fit_transform(df[cols])				      ...............put the values in given columns
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
