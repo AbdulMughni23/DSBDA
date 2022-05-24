@@ -1,0 +1,73 @@
+# creating table
+
+create 'table_name', '1st_key_name', '2nd_key_name'......
+
+eg:
+create "flight300", "finfo", "fsch"
+
+#adding data
+
+put 'table_name', entery_no, 'key:value_of', 'value' 
+
+put 'flight300', 1, 'finfo:source', 'pune'
+put 'flight300', 1, 'finfo:destination', 'mumbai'
+put 'flight300', 1, 'fsch:at', '10:25am'
+put 'flight300', 1, 'fsch:dt', '12:25am'
+put 'flight300', 1, 'fsch:delay', '10'
+
+put 'flight300', 2, 'finfo:source', 'pune'
+put 'flight300', 2, 'finfo:destination', 'hyderabad'
+put 'flight300', 2, 'fsch:at', '6:30am'
+put 'flight300', 2, 'fsch:dt', '7:15am'
+put 'flight300', 2, 'fsch:delay', '25'
+
+# see all data stored
+scan 'table_name'
+eg: 
+scan 'flight300'
+
+
+#alter Table
+alter 'table_name', NAME=>'key_name'
+eg:
+alter 'flight300', NAME=>'revenue'
+
+#deleting a key
+eg:
+alter 'flight300', NAME=>'revenue', METHOD=>'delete'
+
+#droping a table
+eg:
+create 'table1', ''cf
+disable 'table1'
+drop 'table'
+
+#to show all tables
+list
+
+
+#read from table
+eg: 
+get 'flight300', 1
+
+get 'flight300', 1, COLUMN => 'finfo:source'
+
+get 'flight300', 1, COLUMN => ['finfo:source', 'finfo:dest']
+
+get 'flight300', COLUMN => 'finfo:source'
+
+#connecting hive and hbase 
+#make external table in hive
+#read from hbase using
+scan 'table_name'
+
+ #from hbase to hive
+
+create external table hbase_flight_new300(fno int, fsource string, fdest string, fsh_at string, fsh_dt string, fsh_delay string )
+	>stored by 'org.apache.hadoop.hive.hbase.HBaseStorageHandler'
+	>with SERDEPROPERTIES("hbase.columns.mapping"=":key,finfo:source,......fsch:dt,fsch:delay")
+	>TBLPROPERTIES("hbase.table.name"="flight300");
+
+
+
+  
